@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.sulv.mybatis.Idao.CollectionMapper">
+  <resultMap id="BaseResultMap" type="team.sulv.mybatis.po.Collection">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, article_id, state
+  </sql>
+    <select id="getCollection" parameterType="team.sulv.mybatis.po.CollectionKey" resultMap="BaseResultMap">
+
+
+SELECT article.title,`user`.user_name ,`user`.user_id,article.article_id,collection.state FROM `user`,article,collection
+WHERE
+#{userId,jdbcType=INTEGER}=article.user_id
+AND article.article_id=collection.article_id
+AND collection.user_id=`user`.user_id
+
+  </select>
+  <select id="selectByPrimaryKey" parameterType="team.sulv.mybatis.po.CollectionKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from collection
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+ 
+  <delete id="deleteByPrimaryKey" parameterType="team.sulv.mybatis.po.CollectionKey">
+    delete from collection
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.sulv.mybatis.po.Collection">
+    insert into collection (user_id, article_id, state
+      )
+    values (#{userId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="team.sulv.mybatis.po.Collection">
+    insert into collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="team.sulv.mybatis.po.Collection">
+    update collection
+    <set>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.sulv.mybatis.po.Collection">
+    update collection
+    set state = #{state,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+    <update id="clearC" parameterType="team.sulv.mybatis.po.CollectionKey">
+UPDATE `collection`,article,`user`
+SET `collection`.state=0
+WHERE
+#{userId,jdbcType=INTEGER}=article.user_id
+AND article.article_id=`collection`.article_id
+AND `collection`.user_id=`user`.user_id
+  </update>
+</mapper>

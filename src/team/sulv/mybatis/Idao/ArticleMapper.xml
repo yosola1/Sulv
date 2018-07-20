@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.sulv.mybatis.Idao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="team.sulv.mybatis.po.Article">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="article_content" jdbcType="VARCHAR" property="articleContent" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="final_date" jdbcType="TIMESTAMP" property="finalDate" />
+    <result column="collection_num" jdbcType="INTEGER" property="collectionNum" />
+    <result column="like_num" jdbcType="INTEGER" property="likeNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    article_id, user_id, title, article_content, type_id, create_date, final_date, collection_num, 
+    like_num
+  </sql>
+  <sql id="Base_Article_List">
+    article_id, article.user_id, title, article_content, article.type_id, create_date, final_date, collection_num, 
+    like_num,user_name,type_name
+  </sql>
+  
+  
+  <select id="selectArticleList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select `user`.user_name,type.type_name,article.*
+	FROM article,`user`,type
+	WHERE `user`.user_id=article.user_id AND type.type_id=article.type_id
+	order by final_date  DESC
+	limit #{arg0},#{arg1};
+  </select> 
+      <select id="checkArticle" parameterType="team.sulv.mybatis.po.Article" resultMap="BaseResultMap">
+  	SELECT * FROM article
+	WHERE title=#{title,jdbcType=VARCHAR} 
+  </select>
+  <select id="selectMyArticle" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select `user`.user_name,type.type_name,article.*
+	FROM article,`user`,type
+	WHERE article.user_id=#{arg0} AND `user`.user_id=article.user_id AND type.type_id=article.type_id
+	order by final_date  DESC
+	limit #{arg1},#{arg2};
+  </select> 
+  
+  <select id="selectCollectionArticle" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT article.*,`user`.user_name,type.type_name
+	FROM article,`user`,type,collection
+	WHERE collection.user_id=#{arg0} AND article.article_id=collection.article_id AND `user`.user_id=#{arg0} AND type.type_id=article.type_id
+	ORDER BY final_date DESC
+	limit #{arg1},#{arg2};
+  </select> 
+  
+  <select id="selectThisType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT article.*,`user`.user_name,type.type_name
+	FROM article,`user`,type
+	WHERE type.type_id=#{arg0} AND article.type_id=#{arg0} AND `user`.user_id=article.user_id
+	ORDER BY final_date DESC
+	limit #{arg1},#{arg2};
+  </select> 
+  
+  <select id="recommendArticleA" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	CALL recommend_creat(#{arg0},#{arg1},#{arg2});
+  </select>
+  <select id="recommendArticleB" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	CALL recommend(#{arg0},#{arg1},#{arg2});
+  </select>
+  
+  <select id="selectHotArticle"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT article_id,title FROM article
+	ORDER BY like_num DESC
+	LIMIT #{arg0},#{arg1};
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Article_List" />
+    from article,`user`,type
+    where article_id = #{articleId,jdbcType=INTEGER} 
+    AND type.type_id=article.type_id AND `user`.user_id=article.user_id;
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.sulv.mybatis.po.Article">
+    insert into article (article_id, user_id, title, 
+      article_content, type_id, create_date, 
+      final_date, collection_num, like_num
+      )
+    values (#{articleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{articleContent,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{finalDate,jdbcType=TIMESTAMP}, #{collectionNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="team.sulv.mybatis.po.Article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="articleContent != null">
+        article_content,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="finalDate != null">
+        final_date,
+      </if>
+      <if test="collectionNum != null">
+        collection_num,
+      </if>
+      <if test="likeNum != null">
+        like_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleContent != null">
+        #{articleContent,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finalDate != null">
+        #{finalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectionNum != null">
+        #{collectionNum,jdbcType=INTEGER},
+      </if>
+      <if test="likeNum != null">
+        #{likeNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateCollecctionNum" parameterType="java.lang.Integer">
+  UPDATE article
+	SET collection_num=collection_num+1
+	WHERE article_id=#{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="subCollecctionNum" parameterType="java.lang.Integer">
+  UPDATE article
+	SET collection_num=collection_num-1
+	WHERE article_id=#{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateLikeNum" parameterType="java.lang.Integer">
+  UPDATE article
+	SET like_num=like_num+1
+	WHERE article_id=#{articleId,jdbcType=INTEGER}
+  </update>
+   <update id="subLikeNum" parameterType="java.lang.Integer">
+  UPDATE article
+	SET like_num=like_num-1
+	WHERE article_id=#{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="team.sulv.mybatis.po.Article">
+    update article
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleContent != null">
+        article_content = #{articleContent,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finalDate != null">
+        final_date = #{finalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectionNum != null">
+        collection_num = #{collectionNum,jdbcType=INTEGER},
+      </if>
+      <if test="likeNum != null">
+        like_num = #{likeNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.sulv.mybatis.po.Article">
+    update article
+    set user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      article_content = #{articleContent,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      final_date = #{finalDate,jdbcType=TIMESTAMP},
+      collection_num = #{collectionNum,jdbcType=INTEGER},
+      like_num = #{likeNum,jdbcType=INTEGER}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+ 
+  
+
+</mapper>

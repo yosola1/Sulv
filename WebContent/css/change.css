@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+#content {
+	width: 100%;
+	height: 700px;
+	padding-top: 20%;
+	background:
+		url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502512591866&di=3c498dce1dc7cd0f7c0747d04d61c5fb&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F5%2F57bab71924971.jpg);
+}
+
+.name {
+	font-size: large;
+	margin-left: 100px;
+}
+
+#main {
+	width: 70%;
+	height: 300px;
+	/* text-align: center; */
+	margin-right: 300px;
+	margin-left: auto;
+}
+
+#bufen {
+	margin-left: 300px;
+}
+
+.a {
+	background-color: white;
+	border: 1px solid #000;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	height: 30px;
+	width: 150px;
+	margin-top: 20px;
+}

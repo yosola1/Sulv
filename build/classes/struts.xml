@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+  <constant name="struts.devMode" value="true" />
+ <package name="writer" extends="json-default">
+ 	<interceptors>
+ 		<interceptor name="loginVerify" class="team.sulv.interceptor.LoginVerify"></interceptor>
+ 	</interceptors>
+ 	<action name="isLogin">
+ 		<interceptor-ref name="loginVerify">
+ 			<!-- <param name="root">map</param> -->
+ 		</interceptor-ref>
+ 	</action>
+  	<action name="add" class="team.sulv.action.ArticleAction" method="addArticle">
+  		<result name="success" type="json">map</result>
+  		<result name="error" type="json">map</result>
+  	</action> 
+  	<action name="selectArticle" class="team.sulv.action.ArticleAction" method="selectArticle">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	
+  	<action name="selectArticleList" class="team.sulv.action.ArticleAction" method="selectArticleList">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	
+  	<action name="selectComment" class="team.sulv.action.CommentAction" method="selectComment">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="addAttention" class="team.sulv.action.AttentionAction" method="addAttention">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="isAttention" class="team.sulv.action.AttentionAction" method="isAttention">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="deleteAttention" class="team.sulv.action.AttentionAction" method="deleteAttention">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="addLike" class="team.sulv.action.LikeAction" method="addLike">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="deleteLike" class="team.sulv.action.LikeAction" method="deleteLike">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="isLike" class="team.sulv.action.LikeAction" method="isLike">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="addCollection" class="team.sulv.action.CollectionAction" method="addCollection">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="isCollection" class="team.sulv.action.CollectionAction" method="isCollection">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="deleteCollection" class="team.sulv.action.CollectionAction" method="deleteCollection">
+  		<result name="success" type="json">map</result>
+  	</action>
+  	<action name="addComment" class="team.sulv.action.CommentAction" method="addComment">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	<action name="deleteComment" class="team.sulv.action.CommentAction" method="deleteComment">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	
+  	<action name="selectHotArticle" class="team.sulv.action.ArticleAction" method="selectHotArticle">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+		</action>
+			<action name="selectHotWriter" class="team.sulv.action.UserAction" method="selectHotWriter">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	<action name="selectMyArticle" class="team.sulv.action.ArticleAction" method="selectMyArticle">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	<action name="deleteMyArticle" class="team.sulv.action.ArticleAction" method="deleteMyArticle">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	<action name="updateMyArticle" class="team.sulv.action.ArticleAction" method="updateMyArticle">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	<action name="selectUser" class="team.sulv.action.UserAction" method="selectUser">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  	<action name="FansList" class="team.sulv.action.AttentionAction" method="getFansList">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+  		<action name="searchUser" class="team.sulv.action.UserAction" method="searchUser">
+  		<result name="success" type="json">
+  			<param name="root">map</param>
+		</result>
+  	</action>
+
+  </package> 
+
+    
+</struts>

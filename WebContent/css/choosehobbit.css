@@ -1,0 +1,248 @@
+@CHARSET "UTF-8";
+
+#container {
+	width: 100%;
+	height: 1000px;
+}
+
+#main {
+	width: 70%;
+	height: 900px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#top-left {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#top-right {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#min-top-left {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#min-top-right {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#middle-left {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#middle-right {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#min-bottom-left {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#min-bottom-right {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#bottom-left {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#bottom-right {
+	width: 50%;
+	float: left;
+	height: 180px;
+}
+
+#button {
+	text-align: center;
+}
+
+#yingshi {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/film.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#yingshizhong {
+	width: 100%;
+	height: 20px;
+}
+
+#yingshixia {
+	width: 100%;
+	height: 70px;
+}
+
+#dongman {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/animation.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#dongmanzhong {
+	width: 100%;
+	height: 20px;
+}
+
+#dongmanxia {
+	width: 100%;
+	height: 70px;
+}
+
+#yinyue {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/music.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#yinyuezhong {
+	width: 100%;
+	height: 20px;
+}
+
+#yinyuexia {
+	width: 100%;
+	height: 70px;
+}
+
+#keji {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/science.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#kejizhong {
+	width: 100%;
+	height: 20px;
+}
+
+#kejixia {
+	width: 100%;
+	height: 70px;
+}
+
+#renwen {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/culture.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#renwenzhong {
+	width: 100%;
+	height: 20px;
+}
+
+#renwenxia {
+	width: 100%;
+	height: 70px;
+}
+
+#meishi {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/food.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#meishizhong {
+	width: 100%;
+	height: 20px;
+}
+
+#meishixia {
+	width: 100%;
+	height: 70px;
+}
+
+#youxi {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/game.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#youxizhong {
+	width: 100%;
+	height: 20px;
+}
+
+#youxixia {
+	width: 100%;
+	height: 70px;
+}
+
+#xinwen {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/news.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#xinwenzhong {
+	width: 100%;
+	height: 20px;
+}
+
+#xinwenxia {
+	width: 100%;
+	height: 70px;
+}
+
+#lishi {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/history.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#lishizhong {
+	width: 100%;
+	height: 20px;
+}
+
+#lishixia {
+	width: 100%;
+	height: 70px;
+}
+
+#lvxing {
+	width: 100%;
+	height: 90px;
+	background: url("..//img/tour.jpg") no-repeat;
+	margin-left: 160px;
+}
+
+#lvxingzhong {
+	width: 100%;
+	height: 20px;
+}
+
+#lvxingxia {
+	width: 100%;
+	height: 70px;
+};

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.sulv.mybatis.Idao.LikeMapper">
+  <resultMap id="BaseResultMap" type="team.sulv.mybatis.po.Like">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, article_id, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="team.sulv.mybatis.po.LikeKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `like`
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="like" parameterType="team.sulv.mybatis.po.LikeKey" resultType="java.lang.Integer">
+  	select `like`(#{userId,jdbcType=INTEGER},#{articleId,jdbcType=INTEGER});
+  </select>
+  <select id="deleteLike" parameterType="team.sulv.mybatis.po.LikeKey" resultType="java.lang.Integer">
+  	select deleteLike(#{userId,jdbcType=INTEGER},#{articleId,jdbcType=INTEGER});
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="team.sulv.mybatis.po.LikeKey">
+    delete from `like`
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.sulv.mybatis.po.Like">
+    insert into `like` (user_id, article_id, state
+      )
+    values (#{userId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="team.sulv.mybatis.po.Like">
+    insert into like
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="team.sulv.mybatis.po.Like">
+    update like
+    <set>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.sulv.mybatis.po.Like">
+    update like
+    set state = #{state,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+      and article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+</mapper>

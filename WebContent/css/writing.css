@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+.all{
+	width: 100%;
+	background-color: #c0c0c0;
+}
+
+.write{
+	width: 70%;
+	margin-left: 15%;
+	background-color: #ffffff;
+}
+
+.title{
+	font-family:Georgia;
+	font-size: 50px;
+	height: 70px;
+	width: 100%;
+	border: none;
+}
+
+.toolbar {
+       //     border: 1px solid #ccc;
+       		font-size:20px;
+            background-color: #ffffff;
+        }
+        
+.text {
+            border: 1px solid #ccc;
+            height: 530px;
+        }
+        
+.pub{
+	height: 60px;
+	padding: 5px;
+}
+.btn{
+	margin: 5px;
+}
+.sel{
+	height:40px;
+	float:left;
+	padding-left: 10px;
+
+}
